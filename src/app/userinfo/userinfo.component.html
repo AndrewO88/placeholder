@@ -1,0 +1,16 @@
+<mat-card class="card" cdkDrag *ngFor="let card of userData | async">
+  <mat-card-header>
+    <mat-card-title>{{card.userData.name}}{{ card.userData.surname}}</mat-card-title>
+    <mat-card-subtitle>{{card.userData.birthday}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{card.login}}
+      {{card.password}}
+      {{card.email}}
+      {{card.userData.gender}}
+      {{card.userData.phone}}
+    </p>
+  </mat-card-content>
+</mat-card>
+

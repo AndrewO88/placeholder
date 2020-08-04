@@ -1,6 +1,39 @@
-<div class="placeholder"
-style="background-image: url({{img}});
-font-size: {{fSize}}px"
->
-  <div>{{text}}</div>
+<div class="box">
+  <div class="btn">
+    <button mat-fab color="primary" (click)="deleteLast()">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-fab color="primary" (click)="addPost()">
+      <mat-icon>plus_one</mat-icon>
+    </button>
+    <button mat-fab color="primary" (click)="delete2post()">
+      <mat-icon>exposure_neg_2</mat-icon>
+    </button>
+    <button mat-fab color="primary" routerLink="/reg">
+      <mat-icon>face</mat-icon>
+    </button>
+  </div>
+  <mat-card class="card" cdkDrag *ngFor="let card of data | async">
+    <mat-card-header>
+      <mat-card-title>{{card.tittle}}</mat-card-title>
+      <mat-card-subtitle>{{card.subtitle}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{card.subData.imgLink}}" alt="hero logo">
+    <button mat-mini-fab color="primary" (click)="deleteThis(card)">
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+    <mat-card-content>
+      <p>
+        {{card.subData.text}}
+      </p>
+    </mat-card-content>
+    <div> {{card?.owner}}  </div>
+
+
+    <div>
+      <button mat-mini-fab color="primary" (click)="changeUser()">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </div>
+  </mat-card>
 </div>
