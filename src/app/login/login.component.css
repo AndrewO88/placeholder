@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.card {
+  width: 500px;
+  display: block;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+}

@@ -14,6 +14,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import {AppRoutingModule} from './app-routing.module';
 import { UserInfoComponent } from './userinfo/user-info.component';
+import { LoginComponent } from './login/login.component';
 
 export function minlengthValidationMessages(err, field): string {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -38,7 +39,8 @@ export function fieldMatchValidator(control: AbstractControl): {fieldMatch: {mes
     AppComponent,
     ImgPlaceholderComponent,
     RegistrationComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

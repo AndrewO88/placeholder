@@ -1,3 +1,5 @@
+export const USER_INFO = 'userData';
+
 export interface Article {
   tittle: string;
   subtitle: string;
@@ -24,4 +26,10 @@ export interface UserData {
   birthday: string;
   gender: string;
   phone: string;
+}
+
+export interface Login {
+  email: string;
+  password: string;
+  checkbox: boolean;
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {User} from '../img-placeholder/interface';
+import {User, USER_INFO} from '../config/interface';
 import {RegSrvService} from '../services/reg-srv.service';
+import {LocalstorageService} from '../services/localstorage.service';
 
 
 @Component({
@@ -12,7 +13,8 @@ import {RegSrvService} from '../services/reg-srv.service';
 export class UserInfoComponent implements OnInit {
   userData: Observable<User[]>;
   constructor(
-    private regSrv: RegSrvService
+    private regSrv: RegSrvService,
+    private localSrv: LocalstorageService,
   ) { }
 
   ngOnInit(): void {
@@ -21,5 +23,9 @@ export class UserInfoComponent implements OnInit {
 
   deleteThis(card: User): void {
     this.regSrv.deleteThis(card);
+  }
+
+  logOut(): void {
+    this.localSrv.delete(USER_INFO);
   }
 }

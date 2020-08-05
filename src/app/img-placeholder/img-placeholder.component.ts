@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {Article} from './interface';
+import {Article} from '../config/interface';
 import { Observable} from 'rxjs';
-import {DataSrvService} from './data-srv.service';
+import {DataSrvService} from '../services/data-srv.service';
 
 
 

@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/core';
-import {User} from '../img-placeholder/interface';
+import {User} from '../config/interface';
 import {RegSrvService} from '../services/reg-srv.service';
 import {Router} from '@angular/router';
 
@@ -169,7 +169,7 @@ export class RegistrationComponent implements OnInit {
   onSubmit(): void {
     console.log(this.model);
     this.regSrv.add(this.model);
-    this.router.navigate(['/info']).finally(undefined);
+    this.router.navigate(['/']).finally(undefined);
   }
 }
 
