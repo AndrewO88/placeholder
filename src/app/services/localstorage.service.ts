@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Login} from '../config/interface';
 
 @Injectable({
@@ -17,5 +17,6 @@ export class LocalstorageService {
     localStorage.removeItem(key);
   }
 
-  constructor() { }
+  constructor() {
+  }
 }

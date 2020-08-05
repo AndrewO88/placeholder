@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
@@ -6,6 +6,7 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class ErrorService {
   error$: BehaviorSubject<string>;
+
   constructor() {
     this.error$ = new BehaviorSubject<string>('');
   }

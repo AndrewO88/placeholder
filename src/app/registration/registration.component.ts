@@ -29,31 +29,31 @@ export class RegistrationComponent implements OnInit {
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [
     {
-    key: 'userData',
-    fieldGroupClassName: 'display-flex',
-    fieldGroup: [
-      {
-        key: 'name',
-        className: 'flex-1',
-        type: 'input',
-        templateOptions: {
-          label: 'Имя',
-          required: true,
+      key: 'userData',
+      fieldGroupClassName: 'display-flex',
+      fieldGroup: [
+        {
+          key: 'name',
+          className: 'flex-1',
+          type: 'input',
+          templateOptions: {
+            label: 'Имя',
+            required: true,
+          },
         },
-      },
-      {
-        key: 'surname',
-        className: 'flex-1',
-        type: 'input',
-        templateOptions: {
-          label: 'Фамилия',
-          required: true,
+        {
+          key: 'surname',
+          className: 'flex-1',
+          type: 'input',
+          templateOptions: {
+            label: 'Фамилия',
+            required: true,
+          },
         },
-      },
-    ],
-  },
+      ],
+    },
     {
-      validators: {validation: [{name: 'fieldMatch', options: {errorPath: 'passwordConfirm'}}, ], },
+      validators: {validation: [{name: 'fieldMatch', options: {errorPath: 'passwordConfirm'}},],},
       key: 'userData',
       fieldGroupClassName: 'row',
       fieldGroup: [
