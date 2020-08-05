@@ -8,8 +8,10 @@
     <p>-{{card.userData.gender}}</p>
     <p>-{{card.userData.phone}}</p>
   </mat-card-content>
-  <button mat-mini-fab color="primary" (click)="deleteThis(card)">
-    <mat-icon>delete_forever</mat-icon>
-  </button>
+  <div class="container">
+    <button mat-mini-fab color="primary" (click)="deleteThis(card)">
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+  </div>
 </mat-card>
 
