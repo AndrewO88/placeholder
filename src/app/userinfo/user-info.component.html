@@ -1,0 +1,15 @@
+<mat-card class="card" cdkDrag *ngFor="let card of userData | async">
+  <mat-card-header>
+    <mat-card-title>{{card.userData.name | titlecase}} {{ card.userData.surname | titlecase}}  </mat-card-title>
+    <mat-card-subtitle>{{card.login}}{{card.email}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>-{{card.userData.birthday}}</p>
+    <p>-{{card.userData.gender}}</p>
+    <p>-{{card.userData.phone}}</p>
+  </mat-card-content>
+  <button mat-mini-fab color="primary" (click)="deleteThis(card)">
+    <mat-icon>delete_forever</mat-icon>
+  </button>
+</mat-card>
+

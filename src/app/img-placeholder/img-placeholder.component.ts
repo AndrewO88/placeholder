@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Article} from './interface';
-import {BehaviorSubject, Observable, of} from 'rxjs';
+import { Observable} from 'rxjs';
 import {DataSrvService} from './data-srv.service';
-import {map, mergeMap, switchMap, tap} from 'rxjs/operators';
+
 
 
 @Component({
@@ -14,7 +14,7 @@ import {map, mergeMap, switchMap, tap} from 'rxjs/operators';
 export class ImgPlaceholderComponent implements OnInit {
   data: Observable<Article[]>;
 
-  activeUser$: BehaviorSubject<string> = new BehaviorSubject<string>('Шляпа');
+  // activeUser$: BehaviorSubject<string> = new BehaviorSubject<string>('Шляпа');
 
   article: Article = {
     tittle: 'Чу',
@@ -37,20 +37,21 @@ export class ImgPlaceholderComponent implements OnInit {
     // }))))));
 
 
-    this.data = this.dataSrv.articles$.pipe(
-     mergeMap((articles) => {
-          return this.activeUser$.pipe(map((user) => {
-              return articles.map((article) => {
-                return {
-                  ...article,
-                  owner: user
-                };
-              });
-            })
-          );
-        }
-      )
-    );
+    this.data = this.dataSrv.articles$;
+    //   .pipe(
+    //  mergeMap((articles) => {
+    //       return this.activeUser$.pipe(map((user) => {
+    //           return articles.map((article) => {
+    //             return {
+    //               ...article,
+    //               owner: user
+    //             };
+    //           });
+    //         })
+    //       );
+    //     }
+    //   )
+    // );
   }
 
   deleteLast(): void {
@@ -69,7 +70,7 @@ export class ImgPlaceholderComponent implements OnInit {
     this.dataSrv.deleteThis(dataCard);
   }
 
-  changeUser(): void {
-    this.activeUser$.next('Лугабе');
-  }
+  // changeUser(): void {
+  //   this.activeUser$.next('Лугабе');
+  // }
 }

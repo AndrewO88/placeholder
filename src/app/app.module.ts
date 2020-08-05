@@ -13,7 +13,7 @@ import {AbstractControl, ReactiveFormsModule} from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import {AppRoutingModule} from './app-routing.module';
-import { UserinfoComponent } from './userinfo/userinfo.component';
+import { UserInfoComponent } from './userinfo/user-info.component';
 
 export function minlengthValidationMessages(err, field): string {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -38,7 +38,7 @@ export function fieldMatchValidator(control: AbstractControl): {fieldMatch: {mes
     AppComponent,
     ImgPlaceholderComponent,
     RegistrationComponent,
-    UserinfoComponent
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

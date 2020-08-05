@@ -6,15 +6,20 @@ import {RegSrvService} from '../services/reg-srv.service';
 
 @Component({
   selector: 'app-userinfo',
-  templateUrl: './userinfo.component.html',
-  styleUrls: ['./userinfo.component.css']
+  templateUrl: './user-info.component.html',
+  styleUrls: ['./user-info.component.css']
 })
-export class UserinfoComponent implements OnInit {
+export class UserInfoComponent implements OnInit {
   userData: Observable<User[]>;
   constructor(
     private regSrv: RegSrvService
   ) { }
 
   ngOnInit(): void {
+    this.userData = this.regSrv.users$;
+  }
+
+  deleteThis(card: User): void {
+    this.regSrv.deleteThis(card);
   }
 }

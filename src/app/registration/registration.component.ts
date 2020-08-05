@@ -27,23 +27,24 @@ export class RegistrationComponent implements OnInit {
     },
   };
   options: FormlyFormOptions = {};
-  fields: FormlyFieldConfig[] = [{
+  fields: FormlyFieldConfig[] = [
+    {
     key: 'userData',
     fieldGroupClassName: 'display-flex',
     fieldGroup: [
       {
+        key: 'name',
         className: 'flex-1',
         type: 'input',
-        key: 'name',
         templateOptions: {
           label: 'Имя',
           required: true,
         },
       },
       {
+        key: 'surname',
         className: 'flex-1',
         type: 'input',
-        key: 'surname',
         templateOptions: {
           label: 'Фамилия',
           required: true,
@@ -52,11 +53,7 @@ export class RegistrationComponent implements OnInit {
     ],
   },
     {
-      validators: {
-        validation: [
-          {name: 'fieldMatch', options: {errorPath: 'passwordConfirm'}},
-        ],
-      },
+      validators: {validation: [{name: 'fieldMatch', options: {errorPath: 'passwordConfirm'}}, ], },
       key: 'userData',
       fieldGroupClassName: 'row',
       fieldGroup: [
@@ -82,35 +79,40 @@ export class RegistrationComponent implements OnInit {
             ],
           },
         },
+      ],
+    },
+    {
+      fieldGroupClassName: 'display-flex',
+      fieldGroup: [
         {
-          fieldGroupClassName: 'display-flex',
-          fieldGroup: [
-            {
-              className: 'flex-2',
-              type: 'input',
-              key: 'login',
-              templateOptions: {
-                label: 'Имя аккаунта',
-                required: true,
-              },
-            },
-            {
-              className: 'flex-2  padding-left-0',
-              type: 'select',
-              key: 'email',
-              templateOptions: {
-                label: 'email',
-                required: true,
-                options: [
-                  {label: '@mail.ru', value: '@mail.ru'},
-                  {label: '@icloud.com', value: '@icloud.com'},
-                  {label: '@bk.ru', value: '@bk.ru'},
-                  {label: '@list.ru', value: '@list.ru'}
-                ],
-              },
-            },
-          ],
+          key: 'login',
+          className: 'flex-2',
+          type: 'input',
+          templateOptions: {
+            label: 'Имя аккаунта',
+            required: true,
+          },
         },
+        {
+          key: 'email',
+          className: 'flex-2  padding-left-0',
+          type: 'select',
+          templateOptions: {
+            label: 'email',
+            required: true,
+            options: [
+              {label: '@mail.ru', value: '@mail.ru'},
+              {label: '@icloud.com', value: '@icloud.com'},
+              {label: '@bk.ru', value: '@bk.ru'},
+              {label: '@list.ru', value: '@list.ru'}
+            ],
+          },
+        },
+      ],
+    },
+    {
+      fieldGroupClassName: 'row',
+      fieldGroup: [
         {
           key: 'password',
           type: 'input',
@@ -122,6 +124,12 @@ export class RegistrationComponent implements OnInit {
             minLength: 5,
           },
         },
+      ],
+    },
+    {
+      key: 'userData',
+      fieldGroupClassName: 'row',
+      fieldGroup: [
         {
           key: 'passwordConfirm',
           type: 'input',
@@ -144,9 +152,9 @@ export class RegistrationComponent implements OnInit {
             required: true,
           },
         },
-
       ],
-    }];
+    },
+  ];
 
 
   constructor(
@@ -160,8 +168,8 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.model);
-    // this.regSrv.add(this.model);
-    // this.router.navigate(['/info']).finally(undefined);
+    this.regSrv.add(this.model);
+    this.router.navigate(['/info']).finally(undefined);
   }
 }
 

@@ -12,23 +12,31 @@ export class RegSrvService {
   constructor() {
     this.users$ = new BehaviorSubject<User[]>([
       {
-        login: 'string',
-        email: 'string',
-        password: 'string',
+        login: 'login',
+        email: 'email',
+        password: 'password',
         userData: {
-          id: 'string',
-          name: 'string',
-          surname: 'string',
-          birthday: 'string',
-          gender: 'string',
-          phone: 'string',
-        }}
+          id: 'id',
+          name: 'name',
+          surname: 'surname',
+          birthday: 'birthday',
+          gender: 'gender',
+          phone: 'phone',
+        }
+      }
     ]);
   }
 
   add(model: User): void {
     const users: User[] = [...this.users$.value];
     users.push(model);
+    this.users$.next(users);
+  }
+
+  deleteThis(dataCard): void {
+    const users: User[] = [...this.users$.value];
+    const index = users.indexOf(dataCard);
+    users.splice(index, 1);
     this.users$.next(users);
   }
 }

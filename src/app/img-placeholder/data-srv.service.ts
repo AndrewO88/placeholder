@@ -77,9 +77,8 @@ export class DataSrvService {
     const articles: Article[] = [...this.articles$.value];
     const index = articles.indexOf(dataCard);
     articles.splice(index, 1);
-    setTimeout(() => {
-      this.articles$.next(articles);
-    }, 2000);
+    this.articles$.next(articles);
+
     // const index = this.articles$.value.indexOf(dataCard);
     // setTimeout(() => {
     //   this.articles$.value.splice(index, 1);
