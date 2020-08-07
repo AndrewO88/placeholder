@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ErrorService} from '../services/error.service';
-import {Observable} from 'rxjs';
+import {interval, Subscription} from 'rxjs';
 import {FormGroup} from '@angular/forms';
 import {FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/core';
 import {Login, USER_INFO} from '../config/interface';
 import {LocalstorageService} from '../services/localstorage.service';
 import {RegSrvService} from '../services/reg-srv.service';
 import {Router} from '@angular/router';
+import {LOGIN_FORM} from '../config/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {debounce, filter, startWith, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  error$: Observable<string>;
-
+export class LoginComponent implements OnInit, OnDestroy {
+  // error$: Observable<string>;
+  private subs: Subscription[] = [];
   form = new FormGroup({});
   model: Login = {
     email: '',
@@ -23,51 +26,26 @@ export class LoginComponent implements OnInit {
     checkbox: false
   };
   options: FormlyFormOptions = {};
-  fields: FormlyFieldConfig[] = [{
-    validators: {
-      validation: [
-        {name: 'fieldMatch', options: {errorPath: 'passwordConfirm'}},
-      ],
-    },
-    fieldGroup: [
-      {
-        key: 'email',
-        type: 'input',
-        templateOptions: {
-          label: 'email',
-          placeholder: 'email',
-          required: true,
-        },
-      },
-      {
-        key: 'password',
-        type: 'input',
-        templateOptions: {
-          type: 'password',
-          label: 'password',
-          placeholder: 'Must be at least 5 characters',
-          required: true,
-          minLength: 5,
-        },
-      },
-      {
-        key: 'checkbox',
-        type: 'checkbox',
-        templateOptions: {
-          label: 'Запомнить меня',
-        },
-      },
-    ],
-  }];
+  fields: FormlyFieldConfig[] = LOGIN_FORM;
   constructor(
     public errSrv: ErrorService,
     private localSrv: LocalstorageService,
     private regSrv: RegSrvService,
     private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    this.error$ = this.errSrv.error$;
+    // this.error$ = this.errSrv.error$;
+    this.subs.push(this.errSrv.error$.pipe(
+      startWith(''),
+      tap((err) => console.log(err)),
+      debounce((() => interval(500))),
+      filter((text) => !!text)
+    ).subscribe((err) => {
+      this.snackBar.open( err, 'ок',
+        {duration: 2000});
+    }));
     const startData = this.localSrv.load(USER_INFO);
     if (!startData) {
       return;
@@ -84,5 +62,8 @@ export class LoginComponent implements OnInit {
     if (this.model.checkbox) {
       this.localSrv.save(this.model, USER_INFO);
     }
+  }
+  ngOnDestroy(): void {
+    this.subs.forEach((s) => s.unsubscribe());
   }
 }

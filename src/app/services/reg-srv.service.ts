@@ -69,11 +69,7 @@ export class RegSrvService {
 
   auth(model: Login): boolean {
     const users: User[] = [...this.users$.value];
-    if (users.find(value => (value.password === model.password) && (value.login + value.email === model.email))) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!users.find(value => (value.password === model.password) && (value.login + value.email === model.email));
 
   }
 }

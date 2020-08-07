@@ -43,3 +43,24 @@
 [class*="flex-"]:nth-last-child(2) {
   padding-right: 0;
 }
+
+.card {
+  width: 500px;
+  display: block;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.mat-radio-label {
+  margin-left: 16px;
+}
+.mat-form-field-wrapper.ng-tns-c100-5 {
+  width: 400px;
+}
+
+.mat-form-field-wrapper.ng-tns-c100-6 {
+  width: 100px;
+}

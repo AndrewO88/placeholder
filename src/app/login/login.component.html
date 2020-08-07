@@ -2,7 +2,6 @@
   <mat-card class="card">
     <h1>Login Please</h1>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div>{{ error$ | async }}</div>
       <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
       <div class="box">
         <button type="submit" [disabled]="form.invalid" mat-raised-button>Confirm</button>

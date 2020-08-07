@@ -1,3 +1,7 @@
+<div class="box">
+<button routerLink="/" mat-mini-fab color="primary" (click)="logOut()">
+  <mat-icon> directions_run</mat-icon>
+</button>
 <mat-card class="card" cdkDrag *ngFor="let card of userData | async">
   <mat-card-header>
     <mat-card-title>{{card.userData.name | titlecase}} {{ card.userData.surname | titlecase}}</mat-card-title>
@@ -12,9 +16,6 @@
     <button mat-mini-fab color="primary" (click)="deleteThis(card)">
       <mat-icon>delete_forever</mat-icon>
     </button>
-    <button routerLink="/" mat-mini-fab color="primary" (click)="logOut()">
-      <mat-icon> directions_run</mat-icon>
-    </button>
   </div>
 </mat-card>
-
+</div>

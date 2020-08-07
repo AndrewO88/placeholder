@@ -83,6 +83,5 @@ export class DataSrvService {
     // setTimeout(() => {
     //   this.articles$.value.splice(index, 1);
     // }, 2000);
-
   }
 }
